@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtSwipe - Рисуй и Оценивай</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6a11cb">
+</head>
+<body>
+    <div class="phone-mockup">
+        <div class="status-bar">
+            <div class="time" id="currentTime">14:25</div>
+            <div class="battery">84%</div>
+        </div>
+        
+        <div class="screen">
+            <!-- Header -->
+            <header class="header">
+                <div class="logo">ArtSwipe</div>
+                <div class="nav-icons">
+                    <div class="nav-icon" id="notificationsBtn">
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="nav-icon" id="profileBtn"></div>
+                </div>
+            </header>
+            
+            <!-- Navigation Tabs -->
+            <nav class="tabs">
+                <div class="tab active" data-tab="rating">Оценка</div>
+                <div class="tab" data-tab="drawing">Рисование</div>
+                <div class="tab" data-tab="gallery">Галерея</div>
+            </nav>
+            
+            <!-- Main Content -->
+            <main class="content-area">
+                <!-- Rating Tab Content -->
+                <div class="tab-content active" id="ratingTab">
+                    <div class="art-card" id="artCard">
+                        <div class="art-image">
+                            <canvas id="artCanvas" width="300" height="400"></canvas>
+                            <div class="art-overlay">
+                                <div class="artist-info">
+                                    <div class="avatar"></div>
+                                    <div class="artist-details">
+                                        <div class="artist-name">@artist123</div>
+                                        <div class="art-title">Абстрактная композиция</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="indicator like-indicator">
+                            <span>❤️ НРАВИТСЯ</span>
+                        </div>
+                        <div class="indicator dislike-indicator">
+                            <span>✕ НЕ НРАВИТСЯ</span>
+                        </div>
+                    </div>
+                    
+                    <div class="swipe-buttons">
+                        <button class="swipe-btn dislike" id="dislikeBtn">
+                            <span>✕</span>
+                        </button>
+                        <button class="swipe-btn like" id="likeBtn">
+                            <span>♥</span>
+                        </button>
+                    </div>
+                    
+                    <div class="rating-stats">
+                        <div class="stat">
+                            <span class="count">24</span>
+                            <span class="label">Оценено сегодня</span>
+                        </div>
+                        <div class="stat">
+                            <span class="count">156</span>
+                            <span class="label">Всего оценок</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drawing Tab Content -->
+                <div class="tab-content" id="drawingTab">
+                    <div class="drawing-header">
+                        <button class="back-btn" id="backToRating">
+                            ← Назад
+                        </button>
+                        <h3>Новый рисунок</h3>
+                        <button class="save-btn" id="saveDrawing">
+                            Сохранить
+                        </button>
+                    </div>
+                    
+                    <canvas class="drawing-canvas" id="drawingCanvas"></canvas>
+                    
+                    <div class="drawing-tools" id="drawingTools">
+                        <div class="tool-group">
+                            <label>Цвет:</label>
+                            <div class="color-pickers">
+                                <div class="color-picker red active" data-color="#ff4757"></div>
+                                <div class="color-picker blue" data-color="#3742fa"></div>
+                                <div class="color-picker green" data-color="#2ed573"></div>
+                                <div class="color-picker black" data-color="#2f3542"></div>
+                                <div class="color-picker purple" data-color="#6a11cb"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-group">
+                            <label>Размер кисти:</label>
+                            <input type="range" class="brush-size" id="brushSize" min="1" max="20" value="5">
+                            <span class="size-value" id="sizeValue">5px</span>
+                        </div>
+                        
+                        <div class="tool-group">
+                            <button class="tool-btn" id="clearCanvas">Очистить</button>
+                            <button class="tool-btn" id="undoBtn">Отменить</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Tab Content -->
+                <div class="tab-content" id="galleryTab">
+                    <div class="gallery-header">
+                        <h3>Мои рисунки</h3>
+                        <div class="gallery-stats">
+                            <span>12 рисунков</span>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-grid">
+                        <!-- Gallery items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="panel-header">
+            <h3>Уведомления</h3>
+            <button class="close-panel" id="closeNotifications">✕</button>
+        </div>
+        <div class="notifications-list">
+            <!-- Notifications will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Profile Panel -->
+    <div class="profile-panel" id="profilePanel">
+        <div class="panel-header">
+            <h3>Профиль</h3>
+            <button class="close-panel" id="closeProfile">✕</button>
+        </div>
+        <div class="profile-content">
+            <!-- Profile content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast">
+        <span class="toast-message"></span>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="scripts/api.js"></script>
+    <script src="scripts/drawing.js"></script>
+    <script src="scripts/swipe.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
