@@ -1,0 +1,132 @@
+/* Responsive Design */
+@media (max-width: 400px) {
+    .phone-mockup {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        padding: 10px;
+        border: none;
+    }
+    
+    .status-bar {
+        padding: 0 15px;
+    }
+    
+    .header {
+        padding: 0 15px;
+    }
+    
+    .art-card {
+        margin: 15px;
+    }
+    
+    .swipe-buttons {
+        gap: 30px;
+        padding: 15px;
+    }
+    
+    .swipe-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .notifications-panel,
+    .profile-panel {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+@media (max-height: 700px) {
+    .phone-mockup {
+        height: 700px;
+    }
+    
+    .art-image {
+        height: 60%;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light-color: #1e1e1e;
+        --dark-color: #f8f9fa;
+    }
+    
+    .screen {
+        background: #1e1e1e;
+        color: white;
+    }
+    
+    .header,
+    .tabs,
+    .art-card,
+    .rating-stats,
+    .drawing-header,
+    .drawing-tools,
+    .gallery-header {
+        background: #2d2d2d;
+        color: white;
+    }
+    
+    .tab {
+        color: #ccc;
+    }
+    
+    .tab.active {
+        color: var(--primary-color);
+    }
+    
+    .nav-icon {
+        background: #3d3d3d;
+    }
+    
+    .tool-btn {
+        background: #3d3d3d;
+        color: white;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .swipe-btn {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .tab {
+        padding: 20px 15px;
+    }
+    
+    .tool-btn {
+        padding: 12px 20px;
+        min-height: 44px;
+    }
+}
+
+/* High DPI Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo {
+        font-weight: 800;
+    }
+    
+    .artist-name {
+        font-weight: 700;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .phone-mockup {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .swipe-buttons,
+    .tabs,
+    .status-bar {
+        display: none;
+    }
+}
