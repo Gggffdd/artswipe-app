@@ -1,0 +1,28 @@
+{
+    "name": "artswipe-app",
+    "version": "1.0.0",
+    "description": "Приложение для рисования и оценки artwork сообществом",
+    "main": "index.html",
+    "scripts": {
+        "start": "http-server -p 3000 -c-1",
+        "build": "echo 'No build process needed for static app'",
+        "test": "echo 'No tests specified'",
+        "deploy": "echo 'Add deployment script here'"
+    },
+    "keywords": [
+        "art",
+        "drawing",
+        "social",
+        "pwa",
+        "javascript"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "devDependencies": {
+        "http-server": "^14.1.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/artswipe-app.git"
+    }
+}
